@@ -222,7 +222,7 @@ export default function AboutPage({ setCurrentView, handleStartProjectClick }: A
 
   const handleResumeDownload = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.open("https://drive.google.com/file/d/1i7QrCuflPLybIhpJI2MI3Xofi7gVpEUl/view?usp=sharing", "_blank");
+    window.open("https://drive.google.com/file/d/1qTmO-ohW1js2eQ-yly1TDbB9z7tnVErf/view?usp=sharing", "_blank");
   };
 
   return (

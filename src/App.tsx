@@ -1342,7 +1342,7 @@ export default function App() {
                 <button
                   onClick={(e) => {
                     setMobileMenuOpen(false);
-                    window.open("https://drive.google.com/file/d/1i7QrCuflPLybIhpJI2MI3Xofi7gVpEUl/view?usp=sharing", "_blank");
+                    window.open("https://drive.google.com/file/d/1qTmO-ohW1js2eQ-yly1TDbB9z7tnVErf/view?usp=sharing", "_blank");
                   }}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full text-xs font-bold tracking-widest bg-white/[0.04] hover:bg-white/10 border border-white/15 text-white/80 hover:text-white transition-all duration-300 uppercase font-mono cursor-pointer"
                 >

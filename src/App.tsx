@@ -1138,7 +1138,7 @@ export default function App() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formError, setFormError] = useState("");
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError("");
 
@@ -1154,14 +1154,59 @@ export default function App() {
 
     setIsSubmitting(true);
     
-    // Simulate real API submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setContactName("");
-      setContactEmail("");
-      setContactMessage("");
-    }, 1200);
+    // Get Web3Forms access key from Vite env variables
+    const accessKey = (import.meta as any).env.VITE_WEB3FORMS_ACCESS_KEY;
+    
+    if (accessKey) {
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            name: contactName,
+            email: contactEmail,
+            message: contactMessage,
+            subject: `New Portfolio Message from ${contactName}`,
+            from_name: "Capri Portfolio Website"
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          setIsSubmitting(false);
+          setIsSubmitted(true);
+          setContactName("");
+          setContactEmail("");
+          setContactMessage("");
+        } else {
+          setFormError(data.message || "FAILED TO TRANSMIT MESSAGE. PLEASE VERIFY KEY.");
+          setIsSubmitting(false);
+        }
+      } catch (err) {
+        console.error("Form submission error:", err);
+        setFormError("TRANSMISSION ERROR. PLEASE TRY AGAIN LATER.");
+        setIsSubmitting(false);
+      }
+    } else {
+      // Graceful local backup simulation when no key is configured yet
+      // To ensure they know exactly what to do, we log instructions in console
+      console.warn(
+        "CONTACT FORM NOTICE: Real email deliveries are ready! Register a free access key at https://web3forms.com/ for caprimonrose@gmail.com, then add it to your environment variables as: VITE_WEB3FORMS_ACCESS_KEY"
+      );
+      
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setContactName("");
+        setContactEmail("");
+        setContactMessage("");
+      }, 1200);
+    }
   };
 
   const handleStartProjectClick = (e: React.MouseEvent) => {

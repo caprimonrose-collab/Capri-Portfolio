@@ -1971,15 +1971,17 @@ export default function App() {
                 name: "Aniska Tonge",
                 role: "Director Of Operations, Alliance Theater",
                 initials: "AT",
+                imageUrl: "https://lh3.googleusercontent.com/d/1xIXjsZtSxhTqFzpYnsymQLk_8phm3TjX",
                 color: "from-cyan-600/10 to-transparent",
                 borderGlow: "hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]",
                 avatarBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
               },
               {
-                quote: "Working with Capri Monrose was a masterclass in professional communication and artistic execution. They took our complex design brief and synthesized it into a pristine online presence.",
-                name: "Saffron Cole",
-                role: "VP of Product, Tactile Labs",
-                initials: "SC",
+                quote: "Capri is not only a highly talented visual and graphic artist, but also a skilled storyteller. His ability to combine video, graphics, photography, and typography to position products and services while creating an emotional connection that drives action, increases sales, and strengthens brand visibility is what truly sets him apart. He is also incredibly easy to work with and highly collaborative. I highly recommend Capri for any visual communications, creative, or storytelling project.",
+                name: "Jamie Crespo",
+                role: "OWNER, MANGO OPTIC",
+                initials: "JC",
+                imageUrl: "https://lh3.googleusercontent.com/d/175XRard3STLuhalaA_D8fVYaS8hXRsh6",
                 color: "from-cyan-600/10 to-transparent",
                 borderGlow: "hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]",
                 avatarBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
@@ -2065,15 +2067,17 @@ export default function App() {
                 name: "Aniska Tonge",
                 role: "Director Of Operations, Alliance Theater",
                 initials: "AT",
+                imageUrl: "https://lh3.googleusercontent.com/d/1xIXjsZtSxhTqFzpYnsymQLk_8phm3TjX",
                 color: "from-cyan-600/10 to-transparent",
                 borderGlow: "hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]",
                 avatarBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
               },
               {
-                quote: "Working with Capri Monrose was a masterclass in professional communication and artistic execution. They took our complex design brief and synthesized it into a pristine online presence.",
-                name: "Saffron Cole",
-                role: "VP of Product, Tactile Labs",
-                initials: "SC",
+                quote: "Capri is not only a highly talented visual and graphic artist, but also a skilled storyteller. His ability to combine video, graphics, photography, and typography to position products and services while creating an emotional connection that drives action, increases sales, and strengthens brand visibility is what truly sets him apart. He is also incredibly easy to work with and highly collaborative. I highly recommend Capri for any visual communications, creative, or storytelling project.",
+                name: "Jamie Crespo",
+                role: "OWNER, MANGO OPTIC",
+                initials: "JC",
+                imageUrl: "https://lh3.googleusercontent.com/d/175XRard3STLuhalaA_D8fVYaS8hXRsh6",
                 color: "from-cyan-600/10 to-transparent",
                 borderGlow: "hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]",
                 avatarBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"

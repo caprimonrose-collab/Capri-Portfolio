@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", sans-serif;
+}
+
+/* Custom visual system styles */
+:root {
+  --bg-color: #0A0A0F;
+  --text-primary: #FFFFFF;
+  --accent-purple: #8B5CF6;
+  --accent-cyan: #06B6D4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0A0A0F;
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  cursor: none; /* Hide standard cursor for custom cursor */
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) {
+  body {
+    cursor: auto;
+  }
+  .custom-cursor-dot, .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Scroll reveal utility classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Perspective Grid Overlay in Hero */
+.perspective-grid {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 60%, transparent 100%);
+  transform: perspective(600px) rotateX(60deg);
+  transform-origin: top;
+  height: 200%;
+  top: -50%;
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+}
+
+/* Subtle Noise overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.015;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Cursor difference blend mode */
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+}
+
+/* Blend mode difference for a sleek visual effect on scroll or hover */
+.cursor-difference {
+  mix-blend-mode: difference;
+}
+
+/* Breathing Orbs float animations */
+@keyframes drift1 {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(50px, -70px) scale(1.15);
+  }
+  66% {
+    transform: translate(-40px, 30px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+@keyframes drift2 {
+  0% {
+    transform: translate(0px, 0px) scale(1.1);
+  }
+  50% {
+    transform: translate(-60px, 50px) scale(0.85);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1.1);
+  }
+}
+
+@keyframes drift3 {
+  0% {
+    transform: translate(0px, 0px) scale(0.95);
+  }
+  40% {
+    transform: translate(40px, 60px) scale(1.2);
+  }
+  80% {
+    transform: translate(-50px, -40px) scale(0.85);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(0.95);
+  }
+}
+
+.animate-drift-1 {
+  animation: drift1 25s infinite alternate ease-in-out;
+}
+
+.animate-drift-2 {
+  animation: drift2 30s infinite alternate ease-in-out;
+}
+
+.animate-drift-3 {
+  animation: drift3 22s infinite alternate ease-in-out;
+}
+
+/* Hide scrollbar while preserving scrolling capability */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Glassmorphism Nav styling */
+.nav-glass {
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+

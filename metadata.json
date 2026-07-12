@@ -1,0 +1,6 @@
+{
+  "name": "Graphic Design Portfolio",
+  "description": "A sleek, dark-themed, and highly polished graphic design portfolio with ambient animations, custom cursor, breathing gradient orbs, and scroll-reveal transitions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

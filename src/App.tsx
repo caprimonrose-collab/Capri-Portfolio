@@ -1438,12 +1438,15 @@ export default function App() {
                     View Projects
                   </button>
                   <MagneticLink
-                    onClick={handleStartProjectClick}
-                    className="group/heroSec inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-xs font-bold tracking-widest bg-white/[0.02] hover:bg-white/5 border border-white/15 hover:border-[#8b5cf6]/30 text-white/80 hover:text-white transition-all duration-300 uppercase font-mono w-full sm:w-auto"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.open("https://drive.google.com/file/d/1qTmO-ohW1js2eQ-yly1TDbB9z7tnVErf/view?usp=sharing", "_blank");
+                    }}
+                    className="group/heroSec inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-xs font-bold tracking-widest bg-white/[0.02] hover:bg-white/5 border border-white/15 hover:border-cyan-500/30 text-white/80 hover:text-white transition-all duration-300 uppercase font-mono w-full sm:w-auto"
                   >
                     <span className="flex items-center gap-2">
-                      Let's Talk
-                      <ArrowRight className="w-4 h-4 text-[#8b5cf6] group-hover/heroSec:translate-x-1 transition-transform duration-300" />
+                      <FileText className="w-4 h-4 text-cyan-400" />
+                      Download Resume
                     </span>
                   </MagneticLink>
                 </motion.div>
@@ -1953,9 +1956,19 @@ export default function App() {
             </p>
           </div>
 
-          {/* Testimonial Cards Desktop Grid */}
-          <div className="hidden md:grid grid-cols-3 gap-8">
-            {[
+          {/* Testimonial Cards Slider (Responsive for both Mobile & Desktop) */}
+          {(() => {
+            const testimonials = [
+              {
+                quote: "Capri is a team player and hard working professional, with high expertise on digital design. During the time I have been working with him he has shown deep design expertise and integrating AI for advanced AI design for greater speed and efficiency. He would be a great asset for any company.",
+                name: "Philippa Chin-Sang",
+                role: "Performance Marketing Manager",
+                initials: "PC",
+                imageUrl: "https://lh3.googleusercontent.com/d/1a77cv0vyFgcdlNqOX3N8tZaLHAxIC3eb",
+                color: "from-purple-600/10 to-transparent",
+                borderGlow: "hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)]",
+                avatarBg: "bg-purple-500/20 text-purple-300 border-purple-500/30"
+              },
               {
                 quote: "Working with Capri was a fantastic experience. I came to him with a vague idea of what I wanted, and understood exactly what I needed for my logo. He made the entire design process smooth and seamless. I couldn't be happier with the final result, I’ve received so many compliments on it! Highly recommended.",
                 name: "Lizbeth Pagan",
@@ -1965,6 +1978,16 @@ export default function App() {
                 color: "from-cyan-600/10 to-transparent",
                 borderGlow: "hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]",
                 avatarBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
+              },
+              {
+                quote: "Capri has been an incredible partner in building the Exclusive Limousine brand. From our logo and website to marketing materials and branded merchandise, his work has consistently exceeded our expectations. We highly recommend Capri to anyone looking for exceptional graphic design services.",
+                name: "Perrez Trotman",
+                role: "Operating Manager, Exclusive Limousine",
+                initials: "PT",
+                imageUrl: "https://lh3.googleusercontent.com/d/1WWQRG72iaZK5nWraJU-H8fWVfZmFl-bm",
+                color: "from-purple-600/10 to-transparent",
+                borderGlow: "hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)]",
+                avatarBg: "bg-purple-500/20 text-purple-300 border-purple-500/30"
               },
               {
                 quote: "I've had the pleasure of working with Mr. Monrose on several design projects, and he consistently transforms simple ideas into thoughtful, distinctive work that exceeds expectations. One logo he created is now featured alongside globally recognized brands like VISA and LVMH, a testament to the quality of his work.",
@@ -1985,183 +2008,135 @@ export default function App() {
                 color: "from-cyan-600/10 to-transparent",
                 borderGlow: "hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]",
                 avatarBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
-              }
-            ].map((item, index) => (
-              <div
-                key={index}
-                className={`reveal group/card relative flex flex-col justify-between p-8 rounded-2xl border border-white/5 bg-white/[0.01] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 ${item.borderGlow}`}
-              >
-                {/* Subtle colorful glow inside card */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-20 group-hover/card:opacity-40 transition-opacity duration-500 pointer-events-none rounded-2xl`} />
-
-                <div>
-                  {/* Styled Quote Icon */}
-                  <div className="mb-6 flex justify-between items-center">
-                    <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-white/30 group-hover/card:text-cyan-400 group-hover/card:scale-105 transition-all duration-300">
-                      <Quote className="w-5 h-5" />
-                    </div>
-                    <span className="font-mono text-[9px] text-white/20 tracking-wider">
-                      VERIFIED_REVIEW // 0{index + 1}
-                    </span>
-                  </div>
-
-                  {/* Testimonial Quote text */}
-                  <p className="text-white/70 text-sm leading-relaxed font-sans font-light italic mb-8">
-                    "{item.quote}"
-                  </p>
-                </div>
-
-                {/* Person Profile Area */}
-                <div className="flex items-center gap-4 pt-6 border-t border-white/5 mt-auto">
-                  {/* Immersive Profile Pic Placeholder */}
-                  <div className={`relative w-11 h-11 rounded-full flex items-center justify-center overflow-hidden border font-mono text-xs font-bold shrink-0 ${item.avatarBg}`}>
-                    {item.imageUrl ? (
-                      <img
-                        src={item.imageUrl}
-                        alt={item.name}
-                        className="w-full h-full object-cover rounded-full"
-                        referrerPolicy="no-referrer"
-                      />
-                    ) : (
-                      <>
-                        {/* Background grid representation */}
-                        <div className="absolute inset-0 bg-grid-small opacity-10" />
-                        
-                        {/* Inner glowing circle */}
-                        <div className="absolute inset-0.5 rounded-full border border-white/5" />
-                        
-                        <span className="relative z-10 tracking-wider">{item.initials}</span>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Name and Role */}
-                  <div>
-                    <h4 className="text-sm font-bold text-white/90 font-sans tracking-tight group-hover/card:text-white transition-colors">
-                      {item.name}
-                    </h4>
-                    <p className="text-[11px] font-mono text-white/40 uppercase tracking-widest mt-0.5">
-                      {item.role}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Testimonial Cards Mobile Slider */}
-          <div className="block md:hidden relative">
-            {[
-              {
-                quote: "Working with Capri was a fantastic experience. I came to him with a vague idea of what I wanted, and understood exactly what I needed for my logo. He made the entire design process smooth and seamless. I couldn't be happier with the final result, I’ve received so many compliments on it! Highly recommended.",
-                name: "Lizbeth Pagan",
-                role: "Director of Quality Operations, Great HealthWorks",
-                initials: "LP",
-                imageUrl: "https://lh3.googleusercontent.com/d/1XATF4uhKYsU8nsT2rR0jhtdW_10cAg_r",
-                color: "from-cyan-600/10 to-transparent",
-                borderGlow: "hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]",
-                avatarBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
               },
               {
-                quote: "I've had the pleasure of working with Mr. Monrose on several design projects, and he consistently transforms simple ideas into thoughtful, distinctive work that exceeds expectations. One logo he created is now featured alongside globally recognized brands like VISA and LVMH, a testament to the quality of his work.",
-                name: "Aniska Tonge",
-                role: "Director Of Operations, Alliance Theater",
-                initials: "AT",
-                imageUrl: "https://lh3.googleusercontent.com/d/1xIXjsZtSxhTqFzpYnsymQLk_8phm3TjX",
-                color: "from-cyan-600/10 to-transparent",
-                borderGlow: "hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]",
-                avatarBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
-              },
-              {
-                quote: "Capri is not only a highly talented visual and graphic artist, but also a skilled storyteller. His ability to combine video, graphics, photography, and typography to position products and services while creating an emotional connection that drives action, increases sales, and strengthens brand visibility is what truly sets him apart. He is also incredibly easy to work with and highly collaborative. I highly recommend Capri for any visual communications, creative, or storytelling project.",
-                name: "Jamie Crespo",
-                role: "OWNER, MANGO OPTIC",
-                initials: "JC",
-                imageUrl: "https://lh3.googleusercontent.com/d/175XRard3STLuhalaA_D8fVYaS8hXRsh6",
-                color: "from-cyan-600/10 to-transparent",
-                borderGlow: "hover:border-cyan-500/30 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)]",
-                avatarBg: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30"
+                quote: "Working with Capri was a great experience. He took the time to understand exactly what I was looking for and brought my vision to life with a clean, professional presentation template. He was responsive, easy to work with, and delivered high-quality work in a timely manner. I highly recommend Capri to anyone looking for a talented designer who truly listens and delivers.",
+                name: "Sharrian Turnbull",
+                role: "Manager, People Operations",
+                initials: "ST",
+                imageUrl: "https://lh3.googleusercontent.com/d/12EBAI00PUJXcY19pcgrUGGQmrRWymPLu",
+                color: "from-purple-600/10 to-transparent",
+                borderGlow: "hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(139,92,246,0.1)]",
+                avatarBg: "bg-purple-500/20 text-purple-300 border-purple-500/30"
               }
-            ].map((item, index) => {
-              if (index !== testiIndex) return null;
-              return (
-                <div key={index} className="relative min-h-[340px]">
+            ];
+
+            // Safely guard index
+            const activeIndex = testiIndex % testimonials.length;
+            const activeCards = [
+              testimonials[activeIndex],
+              testimonials[(activeIndex + 1) % testimonials.length],
+              testimonials[(activeIndex + 2) % testimonials.length]
+            ];
+
+            return (
+              <div className="relative w-full">
+                {/* Active Testimonial Cards Grid */}
+                <div className="relative min-h-[480px] sm:min-h-[400px] md:min-h-[380px] flex flex-col justify-center overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.15 }}
-                      className={`w-full p-8 rounded-2xl border border-white/5 bg-white/[0.01] backdrop-blur-sm relative flex flex-col justify-between h-full ${item.borderGlow}`}
+                      key={activeIndex}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full"
                     >
-                      {/* Subtle colorful glow inside card */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-20 pointer-events-none rounded-2xl`} />
+                      {activeCards.map((card, idx) => (
+                        <div
+                          key={card.name}
+                          className={`reveal group/card relative flex flex-col justify-between p-8 rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 ${card.borderGlow} ${idx > 0 ? "hidden md:flex" : "flex"}`}
+                        >
+                          {/* Subtle colorful glow inside card */}
+                          <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-20 group-hover/card:opacity-40 transition-opacity duration-500 pointer-events-none rounded-3xl`} />
 
-                      <div>
-                        {/* Styled Quote Icon */}
-                        <div className="mb-6 flex justify-between items-center">
-                          <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-white/30 text-cyan-400">
-                            <Quote className="w-5 h-5 text-cyan-400" />
+                          <div>
+                            {/* Styled Quote Icon */}
+                            <div className="mb-6 flex justify-between items-center">
+                              <div className="p-3 rounded-xl bg-white/5 border border-white/5 text-white/30 group-hover/card:text-cyan-400 group-hover/card:scale-105 transition-all duration-300">
+                                <Quote className="w-5 h-5 text-cyan-400" />
+                              </div>
+                              <span className="font-mono text-[9px] text-white/20 tracking-wider">
+                                VERIFIED_REVIEW // 0{((activeIndex + idx) % testimonials.length) + 1}
+                              </span>
+                            </div>
+
+                            {/* Testimonial Quote text */}
+                            <p className="text-white/75 text-sm leading-relaxed font-sans font-light italic mb-8">
+                              "{card.quote}"
+                            </p>
                           </div>
-                          <span className="font-mono text-[9px] text-white/20 tracking-wider">
-                            VERIFIED_REVIEW // 0{index + 1}
-                          </span>
-                        </div>
 
-                        {/* Testimonial Quote text */}
-                        <p className="text-white/70 text-sm leading-relaxed font-sans font-light italic mb-8">
-                          "{item.quote}"
-                        </p>
-                      </div>
+                          {/* Person Profile Area */}
+                          <div className="flex items-center gap-4 pt-6 border-t border-white/5 mt-auto">
+                            {/* Immersive Profile Pic */}
+                            <div className={`relative w-11 h-11 rounded-full flex items-center justify-center overflow-hidden border font-mono text-xs font-bold shrink-0 ${card.avatarBg}`}>
+                              {card.imageUrl ? (
+                                <img
+                                  src={card.imageUrl}
+                                  alt={card.name}
+                                  className="w-full h-full object-cover rounded-full"
+                                  referrerPolicy="no-referrer"
+                                />
+                              ) : (
+                                <>
+                                  <div className="absolute inset-0 bg-grid-small opacity-10" />
+                                  <div className="absolute inset-0.5 rounded-full border border-white/5" />
+                                  <span className="relative z-10 tracking-wider">{card.initials}</span>
+                                </>
+                              )}
+                            </div>
 
-                      {/* Person Profile Area */}
-                      <div className="flex items-center gap-4 pt-6 border-t border-white/5 mt-auto">
-                        <div className={`relative w-11 h-11 rounded-full flex items-center justify-center overflow-hidden border font-mono text-xs font-bold shrink-0 ${item.avatarBg}`}>
-                          {item.imageUrl ? (
-                            <img
-                              src={item.imageUrl}
-                              alt={item.name}
-                              className="w-full h-full object-cover rounded-full"
-                              referrerPolicy="no-referrer"
-                            />
-                          ) : (
-                            <>
-                              <div className="absolute inset-0 bg-grid-small opacity-10" />
-                              <div className="absolute inset-0.5 rounded-full border border-white/5" />
-                              <span className="relative z-10 tracking-wider">{item.initials}</span>
-                            </>
-                          )}
+                            {/* Name and Role */}
+                            <div>
+                              <h4 className="text-sm font-bold text-white/90 font-sans tracking-tight group-hover/card:text-white transition-colors">
+                                {card.name}
+                              </h4>
+                              <p className="text-[11px] font-mono text-white/40 uppercase tracking-widest mt-0.5">
+                                {card.role}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-
-                        <div>
-                          <h4 className="text-sm font-bold text-white/90 font-sans tracking-tight">
-                            {item.name}
-                          </h4>
-                          <p className="text-[11px] font-mono text-white/40 uppercase tracking-widest mt-0.5">
-                            {item.role}
-                          </p>
-                        </div>
-                      </div>
+                      ))}
                     </motion.div>
                   </AnimatePresence>
                 </div>
-              );
-            })}
 
-            {/* Slider dots */}
-            <div className="flex justify-center gap-2 mt-6">
-              {[0, 1, 2].map((idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setTestiIndex(idx)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    idx === testiIndex ? "bg-gradient-to-r from-[#8B5CF6] to-[#06B6D4] w-6" : "bg-white/20"
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-          </div>
+                {/* Slider Navigation controls */}
+                <div className="flex justify-center items-center gap-6 mt-10">
+                  <button
+                    onClick={() => setTestiIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+                    className="p-3 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/5 text-white/50 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 cursor-pointer"
+                    aria-label="Previous testimonial"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+
+                  <div className="flex justify-center gap-2">
+                    {testimonials.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setTestiIndex(idx)}
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                          idx === activeIndex ? "bg-gradient-to-r from-[#8B5CF6] to-[#06B6D4] w-6" : "bg-white/20"
+                        }`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setTestiIndex((prev) => (prev + 1) % testimonials.length)}
+                    className="p-3 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/5 text-white/50 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 cursor-pointer"
+                    aria-label="Next testimonial"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </section>
         </>

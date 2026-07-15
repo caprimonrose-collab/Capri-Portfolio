@@ -2021,21 +2021,22 @@ export default function App() {
               }
             ];
 
-            // Safely guard index
-            const activeIndex = testiIndex % testimonials.length;
-            const activeCards = [
-              testimonials[activeIndex],
-              testimonials[(activeIndex + 1) % testimonials.length],
-              testimonials[(activeIndex + 2) % testimonials.length]
+            // Safely group into exactly 2 slides (each with 3 unique testimonials)
+            const slides = [
+              [testimonials[0], testimonials[1], testimonials[2]],
+              [testimonials[3], testimonials[4], testimonials[5]]
             ];
+
+            const activeSlideIndex = testiIndex % slides.length;
+            const activeCards = slides[activeSlideIndex];
 
             return (
               <div className="relative w-full">
                 {/* Active Testimonial Cards Grid */}
-                <div className="relative min-h-[480px] sm:min-h-[400px] md:min-h-[380px] flex flex-col justify-center overflow-hidden">
+                <div className="relative min-h-[480px] sm:min-h-[400px] md:min-h-[380px] flex flex-col justify-center py-4">
                   <AnimatePresence mode="wait">
                     <motion.div
-                      key={activeIndex}
+                      key={activeSlideIndex}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
@@ -2045,7 +2046,7 @@ export default function App() {
                       {activeCards.map((card, idx) => (
                         <div
                           key={card.name}
-                          className={`reveal group/card relative flex flex-col justify-between p-8 rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 ${card.borderGlow} ${idx > 0 ? "hidden md:flex" : "flex"}`}
+                          className={`group/card relative flex flex-col justify-between p-8 rounded-3xl border border-white/5 bg-white/[0.01] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 ${card.borderGlow} ${idx > 0 ? "hidden md:flex" : "flex"}`}
                         >
                           {/* Subtle colorful glow inside card */}
                           <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-20 group-hover/card:opacity-40 transition-opacity duration-500 pointer-events-none rounded-3xl`} />
@@ -2057,7 +2058,7 @@ export default function App() {
                                 <Quote className="w-5 h-5 text-cyan-400" />
                               </div>
                               <span className="font-mono text-[9px] text-white/20 tracking-wider">
-                                VERIFIED_REVIEW // 0{((activeIndex + idx) % testimonials.length) + 1}
+                                VERIFIED_REVIEW // 0{activeSlideIndex * 3 + idx + 1}
                               </span>
                             </div>
 
@@ -2106,7 +2107,7 @@ export default function App() {
                 {/* Slider Navigation controls */}
                 <div className="flex justify-center items-center gap-6 mt-10">
                   <button
-                    onClick={() => setTestiIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
+                    onClick={() => setTestiIndex((prev) => (prev - 1 + slides.length) % slides.length)}
                     className="p-3 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/5 text-white/50 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 cursor-pointer"
                     aria-label="Previous testimonial"
                   >
@@ -2114,12 +2115,12 @@ export default function App() {
                   </button>
 
                   <div className="flex justify-center gap-2">
-                    {testimonials.map((_, idx) => (
+                    {slides.map((_, idx) => (
                       <button
                         key={idx}
                         onClick={() => setTestiIndex(idx)}
                         className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                          idx === activeIndex ? "bg-gradient-to-r from-[#8B5CF6] to-[#06B6D4] w-6" : "bg-white/20"
+                          idx === activeSlideIndex ? "bg-gradient-to-r from-[#8B5CF6] to-[#06B6D4] w-6" : "bg-white/20"
                         }`}
                         aria-label={`Go to slide ${idx + 1}`}
                       />
@@ -2127,7 +2128,7 @@ export default function App() {
                   </div>
 
                   <button
-                    onClick={() => setTestiIndex((prev) => (prev + 1) % testimonials.length)}
+                    onClick={() => setTestiIndex((prev) => (prev + 1) % slides.length)}
                     className="p-3 rounded-full border border-white/5 bg-white/[0.02] hover:bg-white/5 text-white/50 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 cursor-pointer"
                     aria-label="Next testimonial"
                   >

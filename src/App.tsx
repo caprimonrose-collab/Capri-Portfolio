@@ -471,7 +471,7 @@ const ALL_PROJECTS: ProjectType[] = [
       "https://lh3.googleusercontent.com/d/1bhnOWXXJYr5k3TENBYdidRmH9JdyJbmX",
       "https://lh3.googleusercontent.com/d/1zu3Em6HoOrHOcMlrxdIWZv99_wtHzSL2",
       "https://lh3.googleusercontent.com/d/1MYjvuhtbgFoTMvaioy0CVNAtMiFmi1Di",
-      "https://lh3.googleusercontent.com/d/1Fk45TizJ-fCGSHDEBGPeIChDZHOv6K2S",
+      "https://lh3.googleusercontent.com/d/1NwGQ5ewkIfhDK-gQpJRNqVPnqcejThn6",
       "https://lh3.googleusercontent.com/d/1ZCX17StubOowJw1tHt7q9L40zy2-vVCh"
     ],
     galleryItems: [
@@ -496,7 +496,7 @@ const ALL_PROJECTS: ProjectType[] = [
         description: "DESIGN TEMPLATES TO ENGAGE FANS THROUGH EVERY STAGE OF THE SEASON."
       },
       {
-        url: "https://lh3.googleusercontent.com/d/1Fk45TizJ-fCGSHDEBGPeIChDZHOv6K2S",
+        url: "https://lh3.googleusercontent.com/d/1NwGQ5ewkIfhDK-gQpJRNqVPnqcejThn6",
         title: "BRANDING // PRINT",
         description: "BRANDING BEYOND THE COURTS & FIELDS."
       },
